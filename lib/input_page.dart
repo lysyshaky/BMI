@@ -34,7 +34,7 @@ class _InputPageState extends State<InputPage> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedGender = GenderType.female;
+                      selectedGender = GenderType.male;
                     });
                   },
                   child: UsableCard(
