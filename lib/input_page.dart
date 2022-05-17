@@ -13,6 +13,7 @@ class InputPage extends StatefulWidget {
 
 int height = 180;
 int weight = 60;
+int age = 18;
 
 enum GenderType { female, male }
 
@@ -167,6 +168,49 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: UsableCard(
                   colour: kActiveColor,
+                  cardClild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'AGE',
+                        style: klabelTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: kNumberText,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              OnPressed: () {
+                                setState(() {
+                                  if (age > 1) {
+                                    age--;
+                                  }
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              OnPressed: () {
+                                setState(() {
+                                  if (age > 1 && age < 80) {
+                                    age++;
+                                  }
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                          ])
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -184,7 +228,8 @@ class _InputPageState extends State<InputPage> {
 }
 
 class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, this.OnPressed});
+  // ignore: non_constant_identifier_names
+  RoundIconButton({@required this.icon, @required this.OnPressed});
   final IconData icon;
 
   final Function OnPressed;
