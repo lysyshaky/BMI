@@ -12,6 +12,7 @@ class InputPage extends StatefulWidget {
 }
 
 int height = 180;
+int weight = 60;
 
 enum GenderType { female, male }
 
@@ -79,7 +80,7 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           height.toString(),
-                          style: kheightText,
+                          style: kNumberText,
                         ),
                         Text(
                           ' cm',
@@ -118,6 +119,49 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: UsableCard(
                   colour: kActiveColor,
+                  cardClild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: klabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberText,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              OnPressed: () {
+                                setState(() {
+                                  if (weight > 1) {
+                                    weight--;
+                                  }
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              OnPressed: () {
+                                setState(() {
+                                  if (weight > 1 && weight < 120) {
+                                    weight++;
+                                  }
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                          ])
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -135,6 +179,27 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.icon, this.OnPressed});
+  final IconData icon;
+
+  final Function OnPressed;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: OnPressed,
+      elevation: 6.0,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
